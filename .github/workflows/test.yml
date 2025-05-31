@@ -1,5 +1,5 @@
 name: Test Project
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
   test-wf:
@@ -12,6 +12,7 @@ jobs:
       - name: Run test
         run: npm test
   deploy-wf:
+    needs: test-wf
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
